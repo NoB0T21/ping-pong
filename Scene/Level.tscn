@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://712of2ue82y4" path="res://Scene/control.gd" id="4_akbbc"]
 [ext_resource type="Script" uid="uid://cr21gd28iyugt" path="res://Scene/State/player_state_machine.gd" id="5_j0m1p"]
 [ext_resource type="Script" uid="uid://c4582ece5hpf0" path="res://Scene/State/idel_player_state.gd" id="6_6i788"]
+[ext_resource type="Texture2D" uid="uid://cfddaje3dsur6" path="res://assects/Pause.png" id="6_p43b4"]
 [ext_resource type="Script" uid="uid://c34kt7ocgtlgx" path="res://Scene/State/running_game_state.gd" id="7_6lu5p"]
 [ext_resource type="Script" uid="uid://h1fxi2s415m" path="res://Scene/State/paused_game_states.gd" id="8_e4n2r"]
 [ext_resource type="Script" uid="uid://b8tjxj8v4coev" path="res://Scene/next_round_game_state.gd" id="10_to8gu"]
@@ -25,12 +26,13 @@ bounce = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_orl27"]
 size = Vector2(10, 480)
 
-[sub_resource type="SystemFont" id="SystemFont_kkn2x"]
-font_names = PackedStringArray("SF Pro Display")
-font_weight = 800
+[sub_resource type="SystemFont" id="SystemFont_5mlvf"]
+font_names = PackedStringArray("Teko")
+font_weight = 999
+font_stretch = 200
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwxat"]
-bg_color = Color(0.46666667, 0.46666667, 0.5568628, 0.35686275)
+bg_color = Color(0.6258298, 0.7493112, 1, 0.1254902)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -41,17 +43,47 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.28235295, 0.28235295, 0.28235295, 0.39215687)
+bg_color = Color(0.043137256, 0.043137256, 0.043137256, 0.6431373)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="Theme" id="Theme_ist4y"]
-Label/font_sizes/font_size = 14
-Label/fonts/font = SubResource("SystemFont_kkn2x")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0.8235294, 0.2901961)
+Label/font_sizes/font_size = 48
+Label/fonts/font = SubResource("SystemFont_5mlvf")
 Label/styles/normal = SubResource("StyleBoxFlat_vwxat")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_orl27")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dfen"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpyye"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orua6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkn2x"]
+bg_color = Color(0.19607843, 0.1882353, 0.3882353, 1)
+border_width_left = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.87058824, 0.6901961, 0.9019608, 1)
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 10
+corner_detail = 1
+
+[sub_resource type="SystemFont" id="SystemFont_to8gu"]
+font_names = PackedStringArray("SF Pro Display")
+font_weight = 999
+font_stretch = 200
+
+[sub_resource type="LabelSettings" id="LabelSettings_akbbc"]
+font = SubResource("SystemFont_to8gu")
+font_size = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ist4y"]
 bg_color = Color(0.19607843, 0.1882353, 0.3882353, 1)
@@ -87,7 +119,7 @@ corner_radius_bottom_right = 7
 corner_detail = 1
 
 [sub_resource type="SystemFont" id="SystemFont_e4n2r"]
-font_names = PackedStringArray("SF Pro Display")
+font_names = PackedStringArray("Teko")
 font_weight = 999
 font_stretch = 200
 
@@ -101,7 +133,7 @@ Button/colors/font_pressed_color = Color(0.7490196, 0.8784314, 0.9019608, 1)
 Button/styles/hover = SubResource("StyleBoxFlat_ist4y")
 Button/styles/normal = SubResource("StyleBoxFlat_to8gu")
 Button/styles/pressed = SubResource("StyleBoxFlat_r4q6f")
-Label/font_sizes/font_size = 33
+Label/font_sizes/font_size = 40
 Label/fonts/font = SubResource("SystemFont_e4n2r")
 Label/styles/normal = SubResource("StyleBoxFlat_p43b4")
 
@@ -111,25 +143,6 @@ content_margin_top = 50.0
 content_margin_right = 100.0
 content_margin_bottom = 50.0
 bg_color = Color(0.20871013, 0.20871016, 0.20871013, 0.2784314)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkn2x"]
-bg_color = Color(0.19607843, 0.1882353, 0.3882353, 1)
-border_width_left = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.87058824, 0.6901961, 0.9019608, 1)
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 10
-corner_detail = 1
-
-[sub_resource type="SystemFont" id="SystemFont_to8gu"]
-font_names = PackedStringArray("SF Pro Display")
-font_weight = 999
-font_stretch = 200
-
-[sub_resource type="LabelSettings" id="LabelSettings_akbbc"]
-font = SubResource("SystemFont_to8gu")
-font_size = 25
 
 [node name="Level" type="Node2D" unique_id=1929989676]
 
@@ -182,8 +195,8 @@ offset_bottom = 480.0
 mouse_filter = 2
 theme = SubResource("Theme_ist4y")
 script = ExtResource("4_akbbc")
-ResumeButton = NodePath("PauseMenu/VBoxContainer/ResumeControl/Resume")
-exitutton = NodePath("PauseMenu/VBoxContainer/ExitControl/Exit")
+ResumeButton = NodePath("PauseMenu/Control/VBoxContainer/ResumeControl/Resume")
+exitutton = NodePath("PauseMenu/Control/VBoxContainer/ExitControl/Exit")
 next_screen = "res://Scene/Menu/Menu.tscn"
 pauseMenu = NodePath("PauseMenu")
 pauseState = NodePath("../GameStateMachine/PausedGameState")
@@ -200,6 +213,7 @@ mouse_filter = 2
 color = Color(0, 0, 0.039215688, 0.7019608)
 
 [node name="DebugPanel" parent="Control" unique_id=1522054797 groups=["Animation"] instance=ExtResource("1_4gagr")]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 0.0
@@ -222,70 +236,69 @@ mouse_filter = 2
 layout_mode = 2
 
 [node name="Timer" type="Label" parent="Control/PanelContainer/Control" unique_id=718493207 groups=["Animation"]]
-custom_minimum_size = Vector2(40, 40)
-custom_maximum_size = Vector2(40, 40)
-layout_mode = 0
-offset_left = 402.0
-offset_top = 216.0
-offset_right = 442.0
-offset_bottom = 256.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = 22.679993
+offset_right = 21.0
+offset_bottom = 91.680084
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(427.5, 427)
 size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_0dfen")
 text = "20"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseMenu" type="PanelContainer" parent="Control" unique_id=1077111406]
-visible = false
+[node name="Match Start" type="Label" parent="Control/PanelContainer/Control" unique_id=1082854111]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_orl27")
-theme_override_styles/panel = SubResource("StyleBoxFlat_qyxxj")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PauseMenu" unique_id=859502725]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_constants/separation = 17
-
-[node name="Label" type="Label" parent="Control/PauseMenu/VBoxContainer" unique_id=189041283]
-layout_mode = 2
-text = "Paused"
+pivot_offset = Vector2(427.5, 427)
+size_flags_horizontal = 4
+text = "MATCH START IN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResumeControl" type="Control" parent="Control/PauseMenu/VBoxContainer" unique_id=1748722229]
-custom_minimum_size = Vector2(170, 27)
-clip_contents = true
-layout_mode = 2
-
-[node name="Resume" type="Button" parent="Control/PauseMenu/VBoxContainer/ResumeControl" unique_id=1957847026 groups=["Animation"]]
+[node name="NextRound" type="PanelContainer" parent="Control" unique_id=771621437]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(0, 15)
-text = "Resume
-"
 
-[node name="ExitControl" type="Control" parent="Control/PauseMenu/VBoxContainer" unique_id=386336265]
-custom_minimum_size = Vector2(170, 27)
-clip_contents = true
+[node name="Label" type="Label" parent="Control/NextRound" unique_id=1995405222]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0.8235294, 0.21176471)
+theme_override_colors/font_outline_color = Color(0.16862746, 0.69803923, 0.93333334, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 66
+theme_override_styles/normal = SubResource("StyleBoxFlat_jpyye")
+text = "NEXT ROUND"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Exit" type="Button" parent="Control/PauseMenu/VBoxContainer/ExitControl" unique_id=912232846 groups=["Animation"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(0, 15)
-text = "Exit"
+[node name="Round Count" type="Label" parent="Control/NextRound" unique_id=1854966246]
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 50)
+theme_override_styles/normal = SubResource("StyleBoxFlat_orua6")
+text = "Round - 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ScoreBoard" type="PanelContainer" parent="Control" unique_id=2069747692]
 layout_mode = 1
@@ -324,6 +337,94 @@ text = "0"
 label_settings = SubResource("LabelSettings_akbbc")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PauseMenu" type="PanelContainer" parent="Control" unique_id=1077111406]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(22.375, 0)
+theme = SubResource("Theme_orl27")
+theme_override_styles/panel = SubResource("StyleBoxFlat_qyxxj")
+
+[node name="TextureRect" type="TextureRect" parent="Control/PauseMenu" unique_id=1634662555]
+custom_minimum_size = Vector2(380, 460)
+custom_maximum_size = Vector2(380, 460)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture = ExtResource("6_p43b4")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Control/PauseMenu" unique_id=189041283]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -5.5)
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Control" type="Control" parent="Control/PauseMenu" unique_id=1646378045]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PauseMenu/Control" unique_id=859502725]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -258.435
+offset_right = 85.0
+offset_bottom = -58.434998
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(85, 100)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 17
+
+[node name="ResumeControl" type="Control" parent="Control/PauseMenu/Control/VBoxContainer" unique_id=1748722229]
+custom_minimum_size = Vector2(170, 27)
+clip_contents = true
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="Control/PauseMenu/Control/VBoxContainer/ResumeControl" unique_id=1957847026 groups=["Animation"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 15)
+text = "Resume
+"
+
+[node name="ExitControl" type="Control" parent="Control/PauseMenu/Control/VBoxContainer" unique_id=386336265]
+custom_minimum_size = Vector2(170, 27)
+clip_contents = true
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="Control/PauseMenu/Control/VBoxContainer/ExitControl" unique_id=912232846 groups=["Animation"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 15)
+text = "Exit"
 
 [node name="GameStateMachine" type="Node" parent="." unique_id=1045420847 node_paths=PackedStringArray("CURRENT_STATE")]
 process_mode = 3

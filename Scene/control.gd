@@ -31,8 +31,8 @@ func animation() -> void:
 	tween.set_ease(Tween.EASE_IN) 
 	
 	for node: Node in get_tree().get_nodes_in_group("Animation"):
-		node.position.y = 250 if node.name == "Timer" else 15
+		node.position.y = 273.68 if node.name == "Timer" else 15
 		
-		var target_y := 220 if node.name == "Timer" else 0
+		var target_y := 258.68 if node.name == "Timer" else 0.0
 		
 		tween.tween_property(node, ^"position:y", target_y, 0.5)

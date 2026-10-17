@@ -12,7 +12,7 @@ func enter() -> void:
 func update(delta: float) -> void:
 	if time_left > 0:
 		time_left -= delta
-		lable.text = str(ceil(time_left)) 
+		lable.text = str(int(ceil(time_left))) 
 		
 		if time_left <= 0:
 			get_tree().paused = false

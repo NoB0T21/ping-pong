@@ -66,7 +66,73 @@ Button/styles/normal = SubResource("StyleBoxFlat_kkn2x")
 Button/styles/pressed = SubResource("StyleBoxFlat_cr03m")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_mw8f1")
 
-[node name="Menu" type="Control" unique_id=243824710 node_paths=PackedStringArray("startButton", "quitButton")]
+[sub_resource type="Animation" id="Animation_mw8f1"]
+resource_name = "Click"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/VBoxContainer/StartControl/Start:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5j1yv"]
+resource_name = "ClickQuit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/VBoxContainer/QuitControl/Quit:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_plaiv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/VBoxContainer/StartControl/Start:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer/VBoxContainer/QuitControl/Quit:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5j1yv"]
+_data = {
+&"Click": SubResource("Animation_mw8f1"),
+&"ClickQuit": SubResource("Animation_5j1yv"),
+&"RESET": SubResource("Animation_plaiv")
+}
+
+[node name="Menu" type="Control" unique_id=243824710 node_paths=PackedStringArray("startButton", "quitButton", "animationPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,6 +144,7 @@ script = ExtResource("1_mw8f1")
 startButton = NodePath("PanelContainer/VBoxContainer/StartControl/Start")
 quitButton = NodePath("PanelContainer/VBoxContainer/QuitControl/Quit")
 next_screen = "res://Scene/Level.tscn"
+animationPlayer = NodePath("AnimationPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1324028916]
 layout_mode = 1
@@ -119,7 +186,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(0, 15)
+pivot_offset = Vector2(85, 13)
 text = "Start"
 
 [node name="QuitControl" type="Control" parent="PanelContainer/VBoxContainer" unique_id=1489176676]
@@ -133,4 +200,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(85, 13)
 text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1928010301]
+libraries/ = SubResource("AnimationLibrary_5j1yv")

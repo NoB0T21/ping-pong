@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ping Pong"
-run/main_scene="uid://d24cjphyc1aw0"
+run/main_scene="uid://ltkqu4tvengc"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
