@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://cxcgad1tufiue"]
+
+[ext_resource type="Texture2D" uid="uid://cnwaaxu3w6t4p" path="res://assects/Loading background.png" id="1_c18ru"]
+[ext_resource type="Script" uid="uid://k5sise8kixhh" path="res://Scene/Menu/menu.gd" id="1_mw8f1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cokxr"]
+bg_color = Color(0.19607843, 0.1882353, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.87058824, 0.6901961, 0.9019608, 1)
+corner_radius_top_left = 7
+corner_radius_bottom_right = 7
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkn2x"]
+bg_color = Color(0.09019608, 0.14901961, 0.25882354, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.47843137, 0.7490196, 0.8039216, 1)
+corner_radius_top_left = 7
+corner_radius_bottom_right = 7
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cr03m"]
+bg_color = Color(0.24245712, 0.22896808, 0.47103578, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.91187316, 0.6931752, 0.9432789, 1)
+corner_radius_top_left = 7
+corner_radius_bottom_right = 7
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mw8f1"]
+content_margin_left = 7.0
+content_margin_top = 10.0
+content_margin_right = 7.0
+content_margin_bottom = 10.0
+bg_color = Color(0.05490196, 0.07058824, 0.12156863, 0.7921569)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.54901963, 0.8392157, 0.9137255, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_right = 10
+corner_detail = 1
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.2627451)
+shadow_size = 19
+
+[sub_resource type="Theme" id="Theme_mw8f1"]
+Button/colors/font_color = Color(0.88235295, 0.9490196, 1, 1)
+Button/colors/font_hover_color = Color(0.56078434, 0.7647059, 0.83137256, 1)
+Button/colors/font_pressed_color = Color(0.74933136, 0.8786624, 0.9013472, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_cokxr")
+Button/styles/normal = SubResource("StyleBoxFlat_kkn2x")
+Button/styles/pressed = SubResource("StyleBoxFlat_cr03m")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_mw8f1")
+
+[node name="Menu" type="Control" unique_id=243824710 node_paths=PackedStringArray("startButton", "quitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_mw8f1")
+script = ExtResource("1_mw8f1")
+startButton = NodePath("PanelContainer/VBoxContainer/StartControl/Start")
+quitButton = NodePath("PanelContainer/VBoxContainer/QuitControl/Quit")
+next_screen = "res://Scene/Level.tscn"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1324028916]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_c18ru")
+expand_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1728937144]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 130.0
+offset_top = -20.0
+offset_right = 186.0
+offset_bottom = 62.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=898088241]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StartControl" type="Control" parent="PanelContainer/VBoxContainer" unique_id=1283026941]
+custom_minimum_size = Vector2(170, 27)
+clip_contents = true
+layout_mode = 2
+
+[node name="Start" type="Button" parent="PanelContainer/VBoxContainer/StartControl" unique_id=147744861 groups=["Animation"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 15)
+text = "Start"
+
+[node name="QuitControl" type="Control" parent="PanelContainer/VBoxContainer" unique_id=1489176676]
+custom_minimum_size = Vector2(170, 27)
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer/QuitControl" unique_id=2096392353 groups=["Animation"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"

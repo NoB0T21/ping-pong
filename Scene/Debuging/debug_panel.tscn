@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bt0aio7nuwhpc"]
+
+[ext_resource type="Script" uid="uid://sgieo7o1xxsa" path="res://Scene/Debuging/debug_panel.gd" id="1_xfpw1"]
+
+[node name="DebugPanel" type="PanelContainer" unique_id=1522054797 node_paths=PackedStringArray("VBox")]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 170.0
+offset_bottom = 120.0
+script = ExtResource("1_xfpw1")
+VBox = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=420165197]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/separation = 7

@@ -1,0 +1,351 @@
+[gd_scene format=3 uid="uid://d24cjphyc1aw0"]
+
+[ext_resource type="PackedScene" uid="uid://bt0aio7nuwhpc" path="res://Scene/Debuging/debug_panel.tscn" id="1_4gagr"]
+[ext_resource type="PackedScene" uid="uid://b08mvreigig8b" path="res://Player/player.tscn" id="1_cnsa7"]
+[ext_resource type="PackedScene" uid="uid://boqwf4wm8ucpj" path="res://opponent/opponent.tscn" id="2_vwxat"]
+[ext_resource type="PackedScene" uid="uid://dm863viecfkv3" path="res://Ball/ball.tscn" id="3_vwxat"]
+[ext_resource type="Script" uid="uid://712of2ue82y4" path="res://Scene/control.gd" id="4_akbbc"]
+[ext_resource type="Script" uid="uid://cr21gd28iyugt" path="res://Scene/State/player_state_machine.gd" id="5_j0m1p"]
+[ext_resource type="Script" uid="uid://c4582ece5hpf0" path="res://Scene/State/idel_player_state.gd" id="6_6i788"]
+[ext_resource type="Script" uid="uid://c34kt7ocgtlgx" path="res://Scene/State/running_game_state.gd" id="7_6lu5p"]
+[ext_resource type="Script" uid="uid://h1fxi2s415m" path="res://Scene/State/paused_game_states.gd" id="8_e4n2r"]
+[ext_resource type="Script" uid="uid://b8tjxj8v4coev" path="res://Scene/next_round_game_state.gd" id="10_to8gu"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l8h54"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ist4y"]
+size = Vector2(853, 2)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ntmi"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orl27"]
+size = Vector2(10, 480)
+
+[sub_resource type="SystemFont" id="SystemFont_kkn2x"]
+font_names = PackedStringArray("SF Pro Display")
+font_weight = 800
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwxat"]
+bg_color = Color(0.46666667, 0.46666667, 0.5568628, 0.35686275)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orl27"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.28235295, 0.28235295, 0.28235295, 0.39215687)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_ist4y"]
+Label/font_sizes/font_size = 14
+Label/fonts/font = SubResource("SystemFont_kkn2x")
+Label/styles/normal = SubResource("StyleBoxFlat_vwxat")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_orl27")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ist4y"]
+bg_color = Color(0.19607843, 0.1882353, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.87058824, 0.6901961, 0.9019608, 1)
+corner_radius_top_left = 7
+corner_radius_bottom_right = 7
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_to8gu"]
+bg_color = Color(0.09019608, 0.14901961, 0.25882354, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.47843137, 0.7490196, 0.8039216, 1)
+corner_radius_top_left = 7
+corner_radius_bottom_right = 7
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4q6f"]
+bg_color = Color(0.24313726, 0.22745098, 0.47058824, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9137255, 0.69411767, 0.94509804, 1)
+corner_radius_top_left = 7
+corner_radius_bottom_right = 7
+corner_detail = 1
+
+[sub_resource type="SystemFont" id="SystemFont_e4n2r"]
+font_names = PackedStringArray("SF Pro Display")
+font_weight = 999
+font_stretch = 200
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p43b4"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="Theme" id="Theme_orl27"]
+Button/colors/font_focus_color = Color(0.88235295, 0.9490196, 1, 1)
+Button/colors/font_hover_color = Color(0.56078434, 0.7647059, 0.83137256, 1)
+Button/colors/font_pressed_color = Color(0.7490196, 0.8784314, 0.9019608, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_ist4y")
+Button/styles/normal = SubResource("StyleBoxFlat_to8gu")
+Button/styles/pressed = SubResource("StyleBoxFlat_r4q6f")
+Label/font_sizes/font_size = 33
+Label/fonts/font = SubResource("SystemFont_e4n2r")
+Label/styles/normal = SubResource("StyleBoxFlat_p43b4")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qyxxj"]
+content_margin_left = 100.0
+content_margin_top = 50.0
+content_margin_right = 100.0
+content_margin_bottom = 50.0
+bg_color = Color(0.20871013, 0.20871016, 0.20871013, 0.2784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkn2x"]
+bg_color = Color(0.19607843, 0.1882353, 0.3882353, 1)
+border_width_left = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.87058824, 0.6901961, 0.9019608, 1)
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 10
+corner_detail = 1
+
+[sub_resource type="SystemFont" id="SystemFont_to8gu"]
+font_names = PackedStringArray("SF Pro Display")
+font_weight = 999
+font_stretch = 200
+
+[sub_resource type="LabelSettings" id="LabelSettings_akbbc"]
+font = SubResource("SystemFont_to8gu")
+font_size = 25
+
+[node name="Level" type="Node2D" unique_id=1929989676]
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1625445076]
+anchor_mode = 0
+
+[node name="UpperWall" type="StaticBody2D" parent="." unique_id=929681929]
+position = Vector2(426.5, 0)
+physics_material_override = SubResource("PhysicsMaterial_l8h54")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperWall" unique_id=709196124]
+shape = SubResource("RectangleShape2D_ist4y")
+
+[node name="LowerWall" type="StaticBody2D" parent="." unique_id=2112828456]
+position = Vector2(426.5, 480)
+physics_material_override = SubResource("PhysicsMaterial_4ntmi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowerWall" unique_id=2048799597]
+shape = SubResource("RectangleShape2D_ist4y")
+
+[node name="Player" parent="." unique_id=1029245033 instance=ExtResource("1_cnsa7")]
+position = Vector2(3, 240)
+
+[node name="opponent" parent="." unique_id=490396239 instance=ExtResource("2_vwxat")]
+position = Vector2(851, 240)
+
+[node name="Ball" parent="." unique_id=310737208 instance=ExtResource("3_vwxat")]
+position = Vector2(400, 240)
+
+[node name="DeadZoneLeft" type="StaticBody2D" parent="." unique_id=73793827 groups=["DeadZone"]]
+position = Vector2(-5.2, 0)
+
+[node name="DeadZone" type="CollisionShape2D" parent="DeadZoneLeft" unique_id=1668153252]
+position = Vector2(0, 240)
+shape = SubResource("RectangleShape2D_orl27")
+
+[node name="DeadZoneRight" type="StaticBody2D" parent="." unique_id=1499151260 groups=["DeadZone"]]
+position = Vector2(858.64, 0)
+
+[node name="DeadZone" type="CollisionShape2D" parent="DeadZoneRight" unique_id=789021257]
+position = Vector2(0, 240)
+shape = SubResource("RectangleShape2D_orl27")
+
+[node name="Control" type="Control" parent="." unique_id=1220702334 node_paths=PackedStringArray("ResumeButton", "exitutton", "pauseMenu", "pauseState")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 853.0
+offset_bottom = 480.0
+mouse_filter = 2
+theme = SubResource("Theme_ist4y")
+script = ExtResource("4_akbbc")
+ResumeButton = NodePath("PauseMenu/VBoxContainer/ResumeControl/Resume")
+exitutton = NodePath("PauseMenu/VBoxContainer/ExitControl/Exit")
+next_screen = "res://Scene/Menu/Menu.tscn"
+pauseMenu = NodePath("PauseMenu")
+pauseState = NodePath("../GameStateMachine/PausedGameState")
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1193175210]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0.039215688, 0.7019608)
+
+[node name="DebugPanel" parent="Control" unique_id=1522054797 groups=["Animation"] instance=ExtResource("1_4gagr")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 238.0
+offset_bottom = 91.0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=2034382236]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="Control/PanelContainer" unique_id=91654847]
+layout_mode = 2
+
+[node name="Timer" type="Label" parent="Control/PanelContainer/Control" unique_id=718493207 groups=["Animation"]]
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 402.0
+offset_top = 216.0
+offset_right = 442.0
+offset_bottom = 256.0
+size_flags_horizontal = 4
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseMenu" type="PanelContainer" parent="Control" unique_id=1077111406]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_orl27")
+theme_override_styles/panel = SubResource("StyleBoxFlat_qyxxj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PauseMenu" unique_id=859502725]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="Label" type="Label" parent="Control/PauseMenu/VBoxContainer" unique_id=189041283]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeControl" type="Control" parent="Control/PauseMenu/VBoxContainer" unique_id=1748722229]
+custom_minimum_size = Vector2(170, 27)
+clip_contents = true
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="Control/PauseMenu/VBoxContainer/ResumeControl" unique_id=1957847026 groups=["Animation"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 15)
+text = "Resume
+"
+
+[node name="ExitControl" type="Control" parent="Control/PauseMenu/VBoxContainer" unique_id=386336265]
+custom_minimum_size = Vector2(170, 27)
+clip_contents = true
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="Control/PauseMenu/VBoxContainer/ExitControl" unique_id=912232846 groups=["Animation"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 15)
+text = "Exit"
+
+[node name="ScoreBoard" type="PanelContainer" parent="Control" unique_id=2069747692]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.5
+offset_right = 98.5
+offset_bottom = 50.0
+grow_horizontal = 2
+pivot_offset = Vector2(99, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_kkn2x")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/ScoreBoard" unique_id=866794978]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 11
+
+[node name="Player" type="Label" parent="Control/ScoreBoard/HBoxContainer" unique_id=1689921645]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_akbbc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VS" type="Label" parent="Control/ScoreBoard/HBoxContainer" unique_id=1200233038]
+layout_mode = 2
+text = ":"
+label_settings = SubResource("LabelSettings_akbbc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="opponent" type="Label" parent="Control/ScoreBoard/HBoxContainer" unique_id=567502298]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_akbbc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameStateMachine" type="Node" parent="." unique_id=1045420847 node_paths=PackedStringArray("CURRENT_STATE")]
+process_mode = 3
+script = ExtResource("5_j0m1p")
+CURRENT_STATE = NodePath("IdelGameState")
+
+[node name="IdelGameState" type="Node" parent="GameStateMachine" unique_id=1975329890 node_paths=PackedStringArray("timerDisplay", "lable")]
+process_mode = 2
+script = ExtResource("6_6i788")
+timerDisplay = NodePath("../../Control/PanelContainer")
+lable = NodePath("../../Control/PanelContainer/Control/Timer")
+
+[node name="RunningGameState" type="Node" parent="GameStateMachine" unique_id=2087790381]
+script = ExtResource("7_6lu5p")
+
+[node name="PausedGameState" type="Node" parent="GameStateMachine" unique_id=1782915043 node_paths=PackedStringArray("menuDisplay", "timerDisplay", "lable")]
+process_mode = 3
+script = ExtResource("8_e4n2r")
+menuDisplay = NodePath("../../Control")
+timerDisplay = NodePath("../../Control/PanelContainer")
+lable = NodePath("../../Control/PanelContainer/Control/Timer")
+
+[node name="NextRoundGameState" type="Node" parent="GameStateMachine" unique_id=815344207]
+process_mode = 3
+script = ExtResource("10_to8gu")
