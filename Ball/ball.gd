@@ -4,6 +4,7 @@ extends RigidBody2D
 @export var Speed:float = 200.0
 @export var PADDLE_HALF_HEIGHT: float = 20;
 @onready var RunningState : GameState = $"../GameStateMachine/RunningGameState"
+@onready var opponent: CharacterBody2D = $"../opponent"
 
 func _ready() -> void:
 	randomize();
@@ -34,6 +35,12 @@ func _on_body_entered(body: Node) -> void:
 		linear_velocity = new_direction * Speed;
 	if body.is_in_group("DeadZone"):
 		get_tree().paused = true;
+		if body.name=="DeadZoneLeft":
+			ScoreBoard.update_opponent()
+		if body.name=="DeadZoneRight":
+			ScoreBoard.update_player()
+		ScoreBoard.update_round()
+		opponent.SPEED += 10
 		RunningState.transition.emit("NextRoundGameState")
 	else:
 		var direction_x := -1 if linear_velocity.x < 0 else 1;

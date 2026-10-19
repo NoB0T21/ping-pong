@@ -9,6 +9,7 @@ func _ready() -> void:
 	position_X = get_viewport_rect().size.x * 0.99
 
 func _physics_process(delta: float) -> void:
+	DebugPanel.add_debug_property("opponent Speed", str(SPEED));
 	if BALL_NODE:
 		if (BALL_NODE.linear_velocity.x > 0):
 			var direction := BALL_NODE.global_position.y - global_position.y

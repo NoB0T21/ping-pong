@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cr21gd28iyugt" path="res://Scene/State/player_state_machine.gd" id="5_j0m1p"]
 [ext_resource type="Script" uid="uid://c4582ece5hpf0" path="res://Scene/State/idel_player_state.gd" id="6_6i788"]
 [ext_resource type="Texture2D" uid="uid://cfddaje3dsur6" path="res://assects/Pause.png" id="6_p43b4"]
+[ext_resource type="PackedScene" uid="uid://cexdxurb4fm8v" path="res://Scene/ScoreBoard/score_board.tscn" id="6_qyxxj"]
 [ext_resource type="Script" uid="uid://c34kt7ocgtlgx" path="res://Scene/State/running_game_state.gd" id="7_6lu5p"]
 [ext_resource type="Script" uid="uid://h1fxi2s415m" path="res://Scene/State/paused_game_states.gd" id="8_e4n2r"]
 [ext_resource type="Script" uid="uid://b8tjxj8v4coev" path="res://Scene/next_round_game_state.gd" id="10_to8gu"]
@@ -65,25 +66,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orua6"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkn2x"]
-bg_color = Color(0.19607843, 0.1882353, 0.3882353, 1)
-border_width_left = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.87058824, 0.6901961, 0.9019608, 1)
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 10
-corner_detail = 1
-
-[sub_resource type="SystemFont" id="SystemFont_to8gu"]
-font_names = PackedStringArray("SF Pro Display")
-font_weight = 999
-font_stretch = 200
-
-[sub_resource type="LabelSettings" id="LabelSettings_akbbc"]
-font = SubResource("SystemFont_to8gu")
-font_size = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ist4y"]
 bg_color = Color(0.19607843, 0.1882353, 0.3882353, 1)
@@ -170,17 +152,17 @@ position = Vector2(3, 240)
 position = Vector2(851, 240)
 
 [node name="Ball" parent="." unique_id=310737208 instance=ExtResource("3_vwxat")]
-position = Vector2(400, 240)
+position = Vector2(420, 240)
 
 [node name="DeadZoneLeft" type="StaticBody2D" parent="." unique_id=73793827 groups=["DeadZone"]]
-position = Vector2(-5.2, 0)
+position = Vector2(-12, 0)
 
 [node name="DeadZone" type="CollisionShape2D" parent="DeadZoneLeft" unique_id=1668153252]
 position = Vector2(0, 240)
 shape = SubResource("RectangleShape2D_orl27")
 
 [node name="DeadZoneRight" type="StaticBody2D" parent="." unique_id=1499151260 groups=["DeadZone"]]
-position = Vector2(858.64, 0)
+position = Vector2(865, 0)
 
 [node name="DeadZone" type="CollisionShape2D" parent="DeadZoneRight" unique_id=789021257]
 position = Vector2(0, 240)
@@ -269,6 +251,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NextRound" type="PanelContainer" parent="Control" unique_id=771621437]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -300,43 +283,10 @@ text = "Round - 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScoreBoard" type="PanelContainer" parent="Control" unique_id=2069747692]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -101.5
-offset_right = 98.5
-offset_bottom = 50.0
-grow_horizontal = 2
-pivot_offset = Vector2(99, 0)
-theme_override_styles/panel = SubResource("StyleBoxFlat_kkn2x")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/ScoreBoard" unique_id=866794978]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 11
-
-[node name="Player" type="Label" parent="Control/ScoreBoard/HBoxContainer" unique_id=1689921645]
-layout_mode = 2
-text = "1"
-label_settings = SubResource("LabelSettings_akbbc")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VS" type="Label" parent="Control/ScoreBoard/HBoxContainer" unique_id=1200233038]
-layout_mode = 2
-text = ":"
-label_settings = SubResource("LabelSettings_akbbc")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="opponent" type="Label" parent="Control/ScoreBoard/HBoxContainer" unique_id=567502298]
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_akbbc")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="ScoreBoard" parent="Control" unique_id=913955355 instance=ExtResource("6_qyxxj")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
 
 [node name="PauseMenu" type="PanelContainer" parent="Control" unique_id=1077111406]
 visible = false
@@ -431,11 +381,12 @@ process_mode = 3
 script = ExtResource("5_j0m1p")
 CURRENT_STATE = NodePath("IdelGameState")
 
-[node name="IdelGameState" type="Node" parent="GameStateMachine" unique_id=1975329890 node_paths=PackedStringArray("timerDisplay", "lable")]
-process_mode = 2
+[node name="IdelGameState" type="Node" parent="GameStateMachine" unique_id=1975329890 node_paths=PackedStringArray("timerDisplay", "lable", "ball")]
+process_mode = 3
 script = ExtResource("6_6i788")
 timerDisplay = NodePath("../../Control/PanelContainer")
 lable = NodePath("../../Control/PanelContainer/Control/Timer")
+ball = NodePath("../../Ball")
 
 [node name="RunningGameState" type="Node" parent="GameStateMachine" unique_id=2087790381]
 script = ExtResource("7_6lu5p")

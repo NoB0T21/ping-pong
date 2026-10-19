@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cexdxurb4fm8v"]
+
+[ext_resource type="Script" uid="uid://dgtnipt6vral1" path="res://Scene/ScoreBoard/score_board.gd" id="1_sw5px"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkn2x"]
+bg_color = Color(0.19607843, 0.1882353, 0.3882353, 1)
+border_width_left = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.87058824, 0.6901961, 0.9019608, 1)
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 10
+corner_detail = 1
+
+[sub_resource type="SystemFont" id="SystemFont_to8gu"]
+font_names = PackedStringArray("SF Pro Display")
+font_weight = 999
+font_stretch = 200
+
+[sub_resource type="LabelSettings" id="LabelSettings_akbbc"]
+font = SubResource("SystemFont_to8gu")
+font_size = 25
+
+[node name="ScoreBoard" type="PanelContainer" unique_id=913955355]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.5
+offset_right = 98.5
+offset_bottom = 50.0
+grow_horizontal = 2
+pivot_offset = Vector2(99, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_kkn2x")
+script = ExtResource("1_sw5px")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=386008031]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 11
+
+[node name="Player" type="Label" parent="HBoxContainer" unique_id=222794394]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_akbbc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VS" type="Label" parent="HBoxContainer" unique_id=1261319261]
+layout_mode = 2
+text = ":"
+label_settings = SubResource("LabelSettings_akbbc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="opponent" type="Label" parent="HBoxContainer" unique_id=1187432033]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_akbbc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoundNo" type="Label" parent="." unique_id=1308577184]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+text = "round"
+horizontal_alignment = 1
+vertical_alignment = 2
