@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://beetnysnrfjjb"]
+
+[ext_resource type="Texture2D" uid="uid://dmnxq7cwmf17q" path="res://assects/Keys/keyboard_arrow_up_outline.png" id="1_rvo24"]
+[ext_resource type="Texture2D" uid="uid://dsoopph05mkuu" path="res://assects/Keys/keyboard_arrow_up.png" id="2_xqyat"]
+[ext_resource type="Texture2D" uid="uid://lyr74gj0fvuw" path="res://assects/Keys/keyboard_arrow_down_outline.png" id="3_qvbcs"]
+[ext_resource type="Texture2D" uid="uid://c1qtjjsp3q2tt" path="res://assects/Keys/keyboard_arrow_down.png" id="4_xsg27"]
+[ext_resource type="Texture2D" uid="uid://cygyhq3cqyusl" path="res://assects/Keys/pause.png" id="5_xqyat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ist4y"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orl27"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkn2x"]
+size = Vector2(100, 100)
+
+[node name="MobileLayout" type="CanvasLayer" unique_id=320646523]
+
+[node name="Up" type="TouchScreenButton" parent="." unique_id=124424946]
+position = Vector2(780, 330)
+texture_normal = ExtResource("1_rvo24")
+texture_pressed = ExtResource("2_xqyat")
+shape = SubResource("RectangleShape2D_ist4y")
+passby_press = true
+action = "ui_up"
+visibility_mode = 1
+
+[node name="Down" type="TouchScreenButton" parent="." unique_id=911916120]
+position = Vector2(780, 400)
+texture_normal = ExtResource("3_qvbcs")
+texture_pressed = ExtResource("4_xsg27")
+shape = SubResource("RectangleShape2D_orl27")
+passby_press = true
+action = "ui_down"
+visibility_mode = 1
+
+[node name="Pause" type="TouchScreenButton" parent="." unique_id=846417871]
+position = Vector2(790, 15)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_xqyat")
+texture_pressed = ExtResource("5_xqyat")
+shape = SubResource("RectangleShape2D_kkn2x")
+action = "pause"
+visibility_mode = 1

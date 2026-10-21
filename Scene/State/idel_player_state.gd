@@ -2,14 +2,15 @@ class_name IdelGameState extends GameState
 
 @export var timerDisplay : PanelContainer
 @export var lable : Label
-@export var ball : Ball 
-
+@export var SPEED : float
 var time_left : float = 3.0
 
 func enter() -> void:
-	ball.global_position = Vector2(425,240)
+	PLAYER.global_position = Vector2(425,240)
+	Opp.SPEED = SPEED
+	PLAY.SPEED = SPEED
 	time_left=3.0;
-	ball.Speed=200;
+	PLAYER.Speed=SPEED;
 	timerDisplay.visible = true;
 	get_tree().paused = true;
 

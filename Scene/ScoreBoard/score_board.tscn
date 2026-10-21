@@ -16,6 +16,7 @@ corner_detail = 1
 font_names = PackedStringArray("SF Pro Display")
 font_weight = 999
 font_stretch = 200
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_akbbc"]
 font = SubResource("SystemFont_to8gu")
@@ -36,6 +37,8 @@ script = ExtResource("1_sw5px")
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=386008031]
 layout_mode = 2
 size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -6.5)
 theme_override_constants/separation = 11
 
 [node name="Player" type="Label" parent="HBoxContainer" unique_id=222794394]
@@ -62,6 +65,8 @@ vertical_alignment = 1
 [node name="RoundNo" type="Label" parent="." unique_id=1308577184]
 layout_mode = 2
 size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -1.615)
 theme_override_font_sizes/font_size = 12
 text = "round"
 horizontal_alignment = 1

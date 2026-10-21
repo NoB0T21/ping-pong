@@ -12,13 +12,14 @@
 [ext_resource type="Script" uid="uid://c34kt7ocgtlgx" path="res://Scene/State/running_game_state.gd" id="7_6lu5p"]
 [ext_resource type="Script" uid="uid://h1fxi2s415m" path="res://Scene/State/paused_game_states.gd" id="8_e4n2r"]
 [ext_resource type="Script" uid="uid://b8tjxj8v4coev" path="res://Scene/next_round_game_state.gd" id="10_to8gu"]
+[ext_resource type="PackedScene" uid="uid://beetnysnrfjjb" path="res://Scene/mobile_layout.tscn" id="13_5mlvf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l8h54"]
 friction = 0.0
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ist4y"]
-size = Vector2(853, 2)
+size = Vector2(853, 25)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ntmi"]
 friction = 0.0
@@ -65,6 +66,9 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orua6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkn2x"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ist4y"]
@@ -136,6 +140,7 @@ position = Vector2(426.5, 0)
 physics_material_override = SubResource("PhysicsMaterial_l8h54")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UpperWall" unique_id=709196124]
+position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_ist4y")
 
 [node name="LowerWall" type="StaticBody2D" parent="." unique_id=2112828456]
@@ -143,6 +148,7 @@ position = Vector2(426.5, 480)
 physics_material_override = SubResource("PhysicsMaterial_4ntmi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LowerWall" unique_id=2048799597]
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_ist4y")
 
 [node name="Player" parent="." unique_id=1029245033 instance=ExtResource("1_cnsa7")]
@@ -153,6 +159,7 @@ position = Vector2(851, 240)
 
 [node name="Ball" parent="." unique_id=310737208 instance=ExtResource("3_vwxat")]
 position = Vector2(420, 240)
+Speed = 310.0
 
 [node name="DeadZoneLeft" type="StaticBody2D" parent="." unique_id=73793827 groups=["DeadZone"]]
 position = Vector2(-12, 0)
@@ -277,9 +284,19 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, 50)
+offset_transform_position = Vector2(0, 55)
 theme_override_styles/normal = SubResource("StyleBoxFlat_orua6")
 text = "Round - 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Label" parent="Control/NextRound" unique_id=175629327]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 110)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_kkn2x")
+text = "In 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -287,6 +304,11 @@ vertical_alignment = 1
 visible = false
 layout_mode = 0
 anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_right = 200.0
+grow_horizontal = 1
 
 [node name="PauseMenu" type="PanelContainer" parent="Control" unique_id=1077111406]
 visible = false
@@ -318,7 +340,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, -5.5)
+offset_transform_position = Vector2(0, -1)
+theme_override_font_sizes/font_size = 29
 text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -381,15 +404,19 @@ process_mode = 3
 script = ExtResource("5_j0m1p")
 CURRENT_STATE = NodePath("IdelGameState")
 
-[node name="IdelGameState" type="Node" parent="GameStateMachine" unique_id=1975329890 node_paths=PackedStringArray("timerDisplay", "lable", "ball")]
+[node name="IdelGameState" type="Node" parent="GameStateMachine" unique_id=1975329890 node_paths=PackedStringArray("timerDisplay", "lable", "PLAYER", "Opp", "PLAY")]
 process_mode = 3
 script = ExtResource("6_6i788")
 timerDisplay = NodePath("../../Control/PanelContainer")
 lable = NodePath("../../Control/PanelContainer/Control/Timer")
-ball = NodePath("../../Ball")
+SPEED = 200.0
+PLAYER = NodePath("../../Ball")
+Opp = NodePath("../../opponent")
+PLAY = NodePath("../../Player")
 
-[node name="RunningGameState" type="Node" parent="GameStateMachine" unique_id=2087790381]
+[node name="RunningGameState" type="Node" parent="GameStateMachine" unique_id=2087790381 node_paths=PackedStringArray("PLAYER")]
 script = ExtResource("7_6lu5p")
+PLAYER = NodePath("../../Ball")
 
 [node name="PausedGameState" type="Node" parent="GameStateMachine" unique_id=1782915043 node_paths=PackedStringArray("menuDisplay", "timerDisplay", "lable")]
 process_mode = 3
@@ -398,6 +425,12 @@ menuDisplay = NodePath("../../Control")
 timerDisplay = NodePath("../../Control/PanelContainer")
 lable = NodePath("../../Control/PanelContainer/Control/Timer")
 
-[node name="NextRoundGameState" type="Node" parent="GameStateMachine" unique_id=815344207]
+[node name="NextRoundGameState" type="Node" parent="GameStateMachine" unique_id=815344207 node_paths=PackedStringArray("PLAYER", "Opp", "PLAY")]
 process_mode = 3
 script = ExtResource("10_to8gu")
+SPEED = 200.0
+PLAYER = NodePath("../../Ball")
+Opp = NodePath("../../opponent")
+PLAY = NodePath("../../Player")
+
+[node name="MobileLayout" parent="." unique_id=320646523 instance=ExtResource("13_5mlvf")]

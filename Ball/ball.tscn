@@ -9,6 +9,28 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ist4y"]
 radius = 7.0
 
+[sub_resource type="Curve" id="Curve_l4sn5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l4sn5"]
+curve = SubResource("Curve_l4sn5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kkn2x"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 6.0
+emission_ring_cone_angle = 90.0
+initial_velocity_min = -3.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_l4sn5")
+color = Color(0.9999998, 0.7906289, 0.5470298, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_ist4y"]
 radius = 7.0
 height = 14.0
@@ -22,6 +44,13 @@ script = ExtResource("1_l4sn5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1039343559]
 shape = SubResource("CircleShape2D_ist4y")
+
+[node name="Particles" type="GPUParticles2D" parent="." unique_id=1477322523]
+amount = 20
+lifetime = 3.0
+speed_scale = 3.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_kkn2x")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=674964465]
 modulate = Color(1, 0.5137255, 0, 1)

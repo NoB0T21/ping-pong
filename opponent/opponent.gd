@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Opponent extends CharacterBody2D
 
 @onready var BALL_NODE : RigidBody2D = $"../Ball"
 

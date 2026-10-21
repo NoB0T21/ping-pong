@@ -10,17 +10,16 @@ var round:int = 1;
 func _ready() -> void:
 	player.text = str(playerScore)
 	opponent.text = str(opponentScore)
-	round_no.text = "Round-" + str(round)
+	round_no.text = "Round: " + str(round)
 
 func update_player() -> void:
 	playerScore += 1
 	player.text = str(playerScore)
 
 func update_opponent() -> void:
-	print("KOKO")
 	opponentScore += 1
 	opponent.text = str(opponentScore)
 
 func update_round() -> void:
 	round += 1
-	round_no.text = "Round-" + str(round)
+	round_no.text = "Round: " + str(round)

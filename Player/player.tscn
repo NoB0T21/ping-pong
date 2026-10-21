@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cbil8ljh2g8pc" path="res://Player/player.gd" id="1_l8h54"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_orl27"]
-size = Vector2(5, 40)
+size = Vector2(16, 40)
 
 [sub_resource type="QuadMesh" id="QuadMesh_cuwax"]
 size = Vector2(5, 40)
@@ -13,7 +13,8 @@ platform_on_leave = 2
 script = ExtResource("1_l8h54")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=702068537]
+position = Vector2(-5.915, 0)
 shape = SubResource("RectangleShape2D_orl27")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D" unique_id=176287815]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=176287815]
 mesh = SubResource("QuadMesh_cuwax")
